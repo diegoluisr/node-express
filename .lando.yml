@@ -1,0 +1,26 @@
+name: node-express
+recipe: mean
+config:
+  build:
+    - npm install
+  port: '9090'
+  # command: su - node -c '/var/www/.npm-global/bin/ghost run -d /app/src -D'
+  command: node /app/app.js
+  node: '18'
+  database: mysql
+  config:
+    database: .lando/config/mysql.cnf
+
+tooling:
+  npx:
+    service: appserver
+    cmd: npx
+  jest:
+    service: appserver
+    cmd: jest
+
+# do not remove this
+plugins:
+  "@lando/mean": ../..
+
+# https://docs.lando.dev/plugins/mean/config.html

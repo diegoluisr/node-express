@@ -1,0 +1,16 @@
+lando init --source cwd \
+  --recipe mean \
+  --option port=9090 \
+  --option command="su - node -c '/var/www/.npm-global/bin/ghost run -d /app/src -D'" \
+  --name node-express
+
+lando ssh --root -c "npm install ghost-cli@latest -g && mkdir src && cd src && ghost install local --no-start --ip 0.0.0.0"
+
+
+lando npx ts-node src/index.ts
+
+lando npm run build
+lando npm run dev
+lando npm run test
+
+./node_modules/jest/bin/jest.js
