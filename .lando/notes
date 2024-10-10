@@ -14,3 +14,7 @@ lando npm run dev
 lando npm run test
 
 ./node_modules/jest/bin/jest.js
+
+
+
+npm install
